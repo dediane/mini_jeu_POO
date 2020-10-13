@@ -72,7 +72,6 @@ class Game
   end
 
   def enemies_attack
-    puts "Les autres joueurs t'attaquent !"
     puts "-------------------------------------"
     @enemies.each do |enemy|
       enemy.attack(@human_player)
