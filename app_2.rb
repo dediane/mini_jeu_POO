@@ -4,21 +4,6 @@ Bundler.require
 require_relative 'lib/game'
 require_relative 'lib/player'
 
-puts "------------------------------------------------"
-puts "|Bienvenue sur 'ILS VEULENT TOUS MA POO' !      |"
-puts "|Le but du jeu est d'être le dernier survivant !|"
-puts "------------------------------------------------"
-
-puts "Quel est ton prénom?"
-prenom = gets.chomp.to_s 
-user = HumanPlayer.new("#{prenom}")
-
-player1 = Player.new("José")
-player2 = Player.new("Josiane")
-enemies = Array.new
-enemies << player1 
-enemies << player2
-
 def display_state(user, enemies)
   puts "Voici l'état de chaque joueur:\n"
   puts user.show_state
@@ -50,32 +35,58 @@ def get_user_input(user, enemies)
   end
 end
 
-puts "------------------------------"
-while user.life_points > 0 && (player1.life_points > 0 || player2.life_points > 0)
-  display_state(user, enemies)
-  puts "------------------------------"
-  display_user_options(enemies)
-  puts "------------------------------"
-  get_user_input(user, enemies)
-  puts "------------------------------"
-  if enemies[0].life_points > 0 && enemies[1].life_points > 0
-    puts "Les autres joueurs t'attaquent !"
-    puts "-------------------------------"
-    enemies.each do |player|
-      if player.life_points > 0
-        player.attack(user)
+def perform
+  puts "------------------------------------------------"
+  puts "|Bienvenue sur 'ILS VEULENT TOUS MA POO' !      |"
+  puts "|Le but du jeu est d'être le dernier survivant !|"
+  puts "------------------------------------------------"
+
+  puts "Quel est ton prénom?"
+  prenom = gets.chomp.to_s 
+  user = HumanPlayer.new("#{prenom}")
+
+  player1 = Player.new("José")
+  player2 = Player.new("Josiane")
+  enemies = Array.new
+  enemies << player1 
+  enemies << player2
+
+  puts "______________________________________________________"
+  while user.life_points > 0 && (enemies[0].life_points > 0 || enemies[1].life_points > 0)
+    display_state(user, enemies)
+    puts "Appuyez sur entrée pour continuer:"
+    gets.chomp
+    puts "______________________________________________________"
+    display_user_options(enemies)
+    puts "______________________________________________________"
+    get_user_input(user, enemies)
+    puts "______________________________________________________"
+    if enemies[0].life_points > 0 && enemies[1].life_points > 0
+      puts "Les autres joueurs t'attaquent !"
+      puts "Appuyez sur entrée pour continuer:"
+      gets.chomp
+      puts "______________________________________________________"
+      enemies.each do |player|
+        if player.life_points > 0
+          player.attack(user)
+          puts "______________________________________________________"
+          puts ""
+        end
       end
     end
+    puts "Appuyez sur entrée pour continuer:"
+      gets.chomp
+  end
+
+  puts "La partie est finie"
+  if user.life_points > 0
+    puts "BRAVO ! TU AS GAGNE !"
+  else
+    puts "Loser ! Tu as perdu !"
   end
 end
 
-puts "La partie est finie"
-if user.life_points > 0
-  puts "BRAVO ! TU AS GAGNE !"
-else
-  puts "Loser ! Tu as perdu !"
-end
-
+perform
 
 
 
