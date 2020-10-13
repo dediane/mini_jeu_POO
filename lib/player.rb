@@ -1,6 +1,7 @@
 class Player
 
   attr_accessor :name, :life_points
+  @@enemies = Array.new
 
   #initialize a player
   def initialize(name)
@@ -8,22 +9,26 @@ class Player
     @life_points = 10
   end
 
+
   #show how manies life points the player has left
   def show_state
-    puts "#{self.name} a #{self.life_points} points de vie."
+    puts "#{@name} a #{@life_points} points de vie."
   end
 
   #Inflict damages on a player
   def gets_damage(value)
-    self.life_points -= value
-    if self.life_points <= 0
+    @life_points -= value
+    if @life_points <= 0
       puts "Le joueur #{self.name} a été tué!"
+      if @life_points < 0
+        @life_points = 0
+      end
     end
   end
 
   #Inflict damages on a player passed in argument and displays actions
   def attack(player)
-    puts "le joueur #{self.name} attaque le joueur #{player.name}"
+    puts "le joueur #{@name} attaque le joueur #{player.name}"
     damage = compute_damage
     puts "Il lui inflige #{damage} points de dommages"
     player.gets_damage(damage)
@@ -37,20 +42,20 @@ class Player
 end
 
 
-class HumanPlayer
+class HumanPlayer < Player
 
-  attr_accessor :name, :life_points, :weapon_level
+  attr_accessor :weapon_level, :life_points
 
   #initialize a Human Player 
   def initialize(name)
     @name = name
     @life_points = 100
-    @weapon_level = 1
+    @weapon_level = 1  
   end
 
   #Display HumanPlayer name, points of life and weapon level 
   def show_state
-    puts "#{HumanPlayer.name} a #{HumanPlayer.life_points} points de vie et une arme de niveau #{HumanPlayer.weapon_level}." 
+    puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{@weapon_level}." 
   end
 
   #Give a random damage value multiplicated by the weapon level
@@ -84,4 +89,6 @@ class HumanPlayer
       puts "Waow, tu as trouvé un pack de +80 points de vie !"
     end
   end
+
+
 end
