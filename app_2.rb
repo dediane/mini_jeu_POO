@@ -67,7 +67,6 @@ def perform
   enemies << player2
 
   #loop of the game
-  puts "______________________________________________________"
   while user.life_points > 0 && (enemies[0].life_points > 0 || enemies[1].life_points > 0)
     display_state(user, enemies)
     puts "Appuyez sur entrée pour continuer:"
@@ -79,7 +78,6 @@ def perform
     puts "______________________________________________________"
     if enemies[0].life_points > 0 && enemies[1].life_points > 0
       puts "Les autres joueurs t'attaquent !"
-      puts "Appuyez sur entrée pour continuer:"
       gets.chomp
       puts "______________________________________________________"
       enemies.each do |player|

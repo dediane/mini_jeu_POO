@@ -52,9 +52,8 @@ class Game
     puts ""
   end
 
-  def menu_choice
-    print "> "
-    option = gets.chomp.to_s
+  #method to get the input from the user to select the game option.
+  def menu_choice(option)
     puts ""
     if option == "a"
       @human_player.search_weapon

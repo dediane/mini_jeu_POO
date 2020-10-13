@@ -8,17 +8,19 @@ require_relative 'lib/player'
 def perform 
   puts "Avant de commencer, peux-tu me donner ton prénom?"
   name = gets.chomp
-  game = Game.new(name)
-  game.put_title
-  game.show_players
+  my_game = Game.new(name)
+  my_game.put_title
+  my_game.show_players
 
-  while game.is_still_ongoing?
-    game.menu
-    game.menu_choice
+  while my_game.is_still_ongoing?
+    my_game.menu
+    print "> "
+    option = gets.chomp.to_s
+    my_game.menu_choice(option)
     gets.chomp
-    game.enemies_attack
+    my_game.enemies_attack
   end
-  game.end
+  my_game.end
 end
 
 perform

@@ -78,7 +78,7 @@ class HumanPlayer < Player
       end
   end
 
-  #Method to look for a health pack and get more life points.
+  #Method to look for a health pack and get more life points. 
   def search_health_pack
     health_pack = rand(1..6)
     if health_pack == 1
