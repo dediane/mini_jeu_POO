@@ -1,7 +1,7 @@
 class Player
 
   attr_accessor :name, :life_points
-  @@enemies = Array.new
+ # @@enemies = Array.new
 
   #initialize a player
   def initialize(name)
@@ -9,10 +9,13 @@ class Player
     @life_points = 10
   end
 
-
   #show how manies life points the player has left
   def show_state
-    puts "#{@name} a #{@life_points} points de vie."
+    if @life_points == 0
+      puts "#{@name} est mort."
+    else
+      puts "#{@name} a #{@life_points} points de vie."
+    end
   end
 
   #Inflict damages on a player
@@ -75,6 +78,7 @@ class HumanPlayer < Player
       end
   end
 
+  #Method to look for a health pack and get more life points.
   def search_health_pack
     health_pack = rand(1..6)
     if health_pack == 1
