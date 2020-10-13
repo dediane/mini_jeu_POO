@@ -8,16 +8,29 @@ Exercises in Ruby in Object Oriented Programing
 
 **1st version**
 
-This is a basic automatic version of the game.
+**This is a basic automatic version of the game.**
+
+José and Josiane are fighting!
+You's gonna win the game??
+
+---
 
 ### app_2.rb
 
 **2nd version**
 
-This is a more evoluated version of the game.
+**This is a more evoluated version of the game.**
+
+You will fight against our super player José and Josiane!
+You's gonna win the game??
+
+---
 
 ### app_3.rb
 
 **3rd version**
 
-This is a super cool version of the game.
+**This is a super cool version of the game.**
+
+You will fight an variable number of enemies!!!
+You's gonna win the game??
